@@ -58,6 +58,16 @@ struct ContentView: View {
      可能な限りテスト観点についてコメントに記載してください。
      */
     
+    
+    /* MEMO:
+     四捨五入をするタイミングによって微妙に結果が異なるので計算の仕様ついて悩んだのですが、一旦今回は「食材ごとのp,f,cそれぞれを先に四捨五入して整数にしてから最後に合算」する仕様にしました。
+     （白米、納豆それぞれの合計カロリーを別々で四捨五入した上で合算するのか、少数のまま合算してからまとめて四捨五入するのか、或いは食材の中のp,f,cそれぞれを先に四捨五入してしまうのかなど）
+     
+     理由：ダイエット目的の女性ユーザーが多いとのことなので、実際よりも少なく見積もるよりは多めに（全て先に少数のまま合算してからまとめて最後に四捨五入）見積もった方がユーザー的に良い気もしたのですが、p,f,cごとに先に整数にしてしまって整数同士の足し算にした方が実装がシンプルで分かりやすいかなと思ったのと、出題文の『「三大栄養素」それぞれについて…』の文脈的にそうかもしれないと思った為。
+     */
+    
+    func convert
+    
     // 各PFCのg（グラム）の値からKCal（キロカロリー）の合計値を計算して返却する
     func getTotalKcalFromGramsOfPFC(
         // TODO: これを使う時に、摂取量(g)は小数第一位 (小数第二位を四捨五入)にする
@@ -65,7 +75,7 @@ struct ContentView: View {
         fatGrams: Double,
         carbohydrateGrams: Double
     ) -> Int {
-        // TODO: カロリーは整数 (小数第一位を四捨五入)にする
+        // p,f,cそれぞれを先に四捨五入して整数にしている（理由は上記MEMO欄に書いています）
         let proteinKcal = Int(round(proteinGrams * Double(kcalPer1GramOfProtein)))
         let fatKcal = Int(round(fatGrams * Double(kcalPer1GramOfFat)))
         let carbohydrateKcal = Int(round(carbohydrateGrams * Double(kcalPer1GramOfCarbohydrate)))
