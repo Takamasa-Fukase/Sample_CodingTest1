@@ -7,20 +7,25 @@
 
 import SwiftUI
 
-enum MacronutrientType {
-    case protein
-    case fat
-    case carbohydrate
+final class GramToKcalConverter {
+    private static let kcalPer1GramOfProtein: Int = 4       // たんぱく質 1(g) = 4(kcal)
+    private static let kcalPer1GramOfFat: Int = 9           // 脂質　　　 1(g) = 9(kcal)
+    private static let kcalPer1GramOfCarbohydrate: Int = 4  // 炭水化物　 1(g) = 4(kcal)
     
-    var kcalPer1Gram: Int {
-        switch self {
-        case .protein:
-            return 4 // たんぱく質 1(g) = 4(kcal)
-        case .fat:
-            return 9 // 脂質　　　 1(g) = 9(kcal)
-        case .carbohydrate:
-            return 4 // 炭水化物　 1(g) = 4(kcal)
-        }
+    static func getProteinKcal(from grams: Double) -> Int {
+        return convertToRoundedInt(doubleKcal: grams * Double(kcalPer1GramOfProtein))
+    }
+    
+    static func getFatKcal(from grams: Double) -> Int {
+        return convertToRoundedInt(doubleKcal: grams * Double(kcalPer1GramOfFat))
+    }
+    
+    static func getCarbohydrateKcal(from grams: Double) -> Int {
+        return convertToRoundedInt(doubleKcal: grams * Double(kcalPer1GramOfCarbohydrate))
+    }
+        
+    private static func convertToRoundedInt(doubleKcal: Double) -> Int {
+        return Int(round(doubleKcal))
     }
 }
 
