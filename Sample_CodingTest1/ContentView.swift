@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+enum MacronutrientType {
+    case protein
+    case fat
+    case carbohydrate
+    
+    var kcalPer1Gram: Int {
+        switch self {
+        case .protein:
+            return 4 // たんぱく質 1(g) = 4(kcal)
+        case .fat:
+            return 9 // 脂質　　　 1(g) = 9(kcal)
+        case .carbohydrate:
+            return 4 // 炭水化物　 1(g) = 4(kcal)
+        }
+    }
+}
+
 struct Ingredient {
     let name: String
     let proteinGrams: Double
@@ -15,9 +32,9 @@ struct Ingredient {
 }
 
 struct ContentView: View {
-    let kcalPer1GramOfProtein: Int = 4       // たんぱく質 1(g) = 4(kcal)
-    let kcalPer1GramOfFat: Int = 9           // 脂質　　　 1(g) = 9(kcal)
-    let kcalPer1GramOfCarbohydrate: Int = 4  // 炭水化物　 1(g) = 4(kcal)
+    let kcalPer1GramOfProtein: Int = 4
+    let kcalPer1GramOfFat: Int = 9
+    let kcalPer1GramOfCarbohydrate: Int = 4
     
     let ingredients: [Ingredient] = [
         .init(
