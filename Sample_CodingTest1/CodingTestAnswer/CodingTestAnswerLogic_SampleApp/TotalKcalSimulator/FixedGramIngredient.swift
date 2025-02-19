@@ -1,5 +1,5 @@
 //
-//  Ingredient.swift
+//  FixedGramIngredient.swift
 //  Sample_CodingTest1
 //
 //  Created by ウルトラ深瀬 on 19/2/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ingredient {
+struct FixedGramIngredient {
     let name: String
     let proteinGrams: Double
     let fatGrams: Double

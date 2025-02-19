@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TotalKcalSimulatorView: View {
-    let selectedIngredients: [Ingredient] = [
+    let selectedIngredients: [FixedGramIngredient] = [
         .init(
             name: "白米100g",
             proteinGrams: 2.5,
