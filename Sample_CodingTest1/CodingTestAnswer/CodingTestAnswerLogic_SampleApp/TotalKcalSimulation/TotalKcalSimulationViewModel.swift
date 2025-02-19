@@ -8,6 +8,12 @@
 import Foundation
 import Observation
 
+struct CheckListItem: Identifiable {
+    let id = UUID()
+    let ingredient: FixedGramIngredient
+    var isChecked: Bool
+}
+
 @Observable
 final class TotalKcalSimulationViewModel {
     var checkListItems: [CheckListItem] = []

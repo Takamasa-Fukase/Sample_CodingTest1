@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct CheckListItem: Identifiable {
-    let id = UUID()
-    let ingredient: FixedGramIngredient
-    var isChecked: Bool
-}
-
 struct CheckListItemView: View {
     @Binding var item: CheckListItem
     let toggleValueChanged: () -> Void
