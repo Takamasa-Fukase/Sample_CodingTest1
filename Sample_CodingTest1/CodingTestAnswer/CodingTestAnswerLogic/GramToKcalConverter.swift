@@ -32,13 +32,11 @@ final class GramToKcalConverter {
 fileprivate extension Double {
     // ● 摂取量(g) : 小数第一位 (小数第二位を四捨五入)
     var roundedGramsDouble: Double {
-        print("intakeGramsDouble 元の値: \(self), 変換後: \((self * 10).rounded())")
-        return (self * 10).rounded()
+        return ((self * 10).rounded()) / 10
     }
     
     // ● カロリー(kcal) : 整数 (小数第一位を四捨五入)
     var roundedKcalInt: Int {
-        print("roundedInt 元の値: \(self), 変換後: \(Int(self.rounded()))")
         return Int(self.rounded())
     }
 }
