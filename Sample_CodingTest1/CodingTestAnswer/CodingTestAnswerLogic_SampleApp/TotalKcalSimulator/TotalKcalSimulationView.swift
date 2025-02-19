@@ -1,5 +1,5 @@
 //
-//  TotalKcalSimulatorView.swift
+//  TotalKcalSimulationView.swift
 //  Sample_CodingTest1
 //
 //  Created by ウルトラ深瀬 on 19/2/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TotalKcalSimulatorView: View {
+struct TotalKcalSimulationView: View {
     let selectedIngredients: [FixedGramIngredient] = [
         .init(
             name: "白米100g",
@@ -49,5 +49,5 @@ struct TotalKcalSimulatorView: View {
 }
 
 #Preview {
-    TotalKcalSimulatorView()
+    TotalKcalSimulationView()
 }

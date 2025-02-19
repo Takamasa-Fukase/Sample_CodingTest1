@@ -12,7 +12,7 @@ struct ContentView: View {
         TabView() {
             Group {
                 Tab("合計カロリー計算", systemImage: "123.rectangle") {
-                    TotalKcalSimulatorView()
+                    TotalKcalSimulationView()
                 }
                 Tab("自然言語お手軽食事記録作成", systemImage: "rectangle.and.pencil.and.ellipsis") {
                     NaturalLanguageMealRecordCreationView()
