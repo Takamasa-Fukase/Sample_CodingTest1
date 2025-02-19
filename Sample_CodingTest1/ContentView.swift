@@ -34,6 +34,14 @@ struct Ingredient {
     let proteinGrams: Double
     let fatGrams: Double
     let carbohydrateGrams: Double
+    
+    // 食材の各PFCのグラム値からカロリーの合計値を計算して返却する
+    func getTotalKcal() -> Int {
+        let proteinKcal = GramToKcalConverter.getProteinKcal(from: proteinGrams)
+        let fatKcal = GramToKcalConverter.getFatKcal(from: fatGrams)
+        let carbohydrateKcal = GramToKcalConverter.getCarbohydrateKcal(from: carbohydrateGrams)
+        return proteinKcal + fatKcal + carbohydrateKcal
+    }
 }
 
 struct ContentView: View {
@@ -75,15 +83,6 @@ struct ContentView: View {
      問題３について
      可能な限りテスト観点についてコメントに記載してください。
      */
-    
-    // 渡された食材の各PFCのグラムの値からカロリーの合計値を計算して返却する
-    func getTotalKcal(from ingredient: Ingredient) -> Int {
-        let proteinKcal = GramToKcalConverter.getProteinKcal(from: ingredient.proteinGrams)
-        let fatKcal = GramToKcalConverter.getFatKcal(from: ingredient.fatGrams)
-        let carbohydrateKcal = GramToKcalConverter.getCarbohydrateKcal(from: ingredient.carbohydrateGrams)
-        return proteinKcal + fatKcal + carbohydrateKcal
-    }
-    
     func calculate() {
         let riceKcal = getTotalKcal(from: ingredients[0])
         let nattoKcal = getTotalKcal(from: ingredients[1])
