@@ -10,20 +10,26 @@ import Observation
 
 @Observable
 final class TotalKcalSimulationViewModel {
-    private(set) var checkListItems: [CheckListItem] = []
+    var checkListItems: [CheckListItem] = []
     private(set) var totalKcal: Int = 0
     
     func onViewAppear() {
         checkListItems = FixedGramIngredientsDataSource.fixedGramIngredients.map({ ingredient in
             return CheckListItem(ingredient: ingredient, isChecked: false)
         })
-        
-        calculateTotalKcalAndUpdate()
     }
     
-    private func calculateTotalKcalAndUpdate() {
-//        totalKcal = selectedIngredients.reduce(into: 0) { _totalKcal, ingredient in
-//            _totalKcal += ingredient.getTotalKcal()
-//        }
+    func toggleValueChanged() {
+        updateTotalKcal()
+    }
+    
+    private func updateTotalKcal() {
+        let checkedIngredients = checkListItems
+            .filter({ $0.isChecked })
+            .map({ $0.ingredient })
+        
+        totalKcal = checkedIngredients.reduce(into: 0) { _totalKcal, ingredient in
+            _totalKcal += ingredient.getTotalKcal()
+        }
     }
 }

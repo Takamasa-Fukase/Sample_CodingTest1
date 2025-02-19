@@ -14,15 +14,23 @@ struct CheckListItem: Identifiable {
 }
 
 struct CheckListItemView: View {
-    @State var item: CheckListItem
+    @Binding var item: CheckListItem
+    let toggleValueChanged: () -> Void
     
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Toggle(isOn: $item.isChecked) {
-                    Text(item.ingredient.name)
+//                    Text(item.ingredient.name)
                 }
-                .toggleStyle(CheckboxToggleStyle(item: item))
+                .toggleStyle(
+                    CheckboxToggleStyle(
+                        item: $item,
+                        toggleValueChanged: {
+                            toggleValueChanged()
+                        }
+                    )
+                )
             }
             
             Spacer()
@@ -36,11 +44,13 @@ struct CheckListItemView: View {
 }
 
 struct CheckboxToggleStyle: ToggleStyle {
-    let item: CheckListItem
+    @Binding var item: CheckListItem
+    let toggleValueChanged: () -> Void
     
     func makeBody(configuration: Configuration) -> some View {
         Button{
             configuration.isOn.toggle()
+            toggleValueChanged()
         } label: {
             HStack(spacing: 0) {
                 Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
@@ -81,5 +91,10 @@ struct CheckboxToggleStyle: ToggleStyle {
 }
 
 #Preview {
-    CheckListItemView(item: .init(ingredient: FixedGramIngredientsDataSource.fixedGramIngredients[0], isChecked: false))
+    CheckListItemView(
+        item: Binding.constant(
+            .init(ingredient: FixedGramIngredientsDataSource.fixedGramIngredients[0], isChecked: false)
+        ),
+        toggleValueChanged: {}
+    )
 }

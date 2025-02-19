@@ -11,6 +11,8 @@ struct TotalKcalSimulationView: View {
     @State var viewModel = TotalKcalSimulationViewModel()
     
     var body: some View {
+        @Bindable var viewModel = viewModel
+        
         NavigationStack {
             VStack(spacing: 0) {
                 HStack(alignment: .bottom, spacing: 0) {
@@ -42,8 +44,13 @@ struct TotalKcalSimulationView: View {
                     .padding(.all, 20)
                 
                 // 食材のチェックリスト
-                ForEach(viewModel.checkListItems) { item in
-                    CheckListItemView(item: item)
+                ForEach($viewModel.checkListItems) { $item in
+                    CheckListItemView(
+                        item: $item,
+                        toggleValueChanged: {
+                            viewModel.toggleValueChanged()
+                        }
+                    )
                 }
                 
                 Spacer()
@@ -62,12 +69,6 @@ struct TotalKcalSimulationView: View {
             .onAppear {
                 viewModel.onViewAppear()
             }
-        }
-    }
-    
-    func checkListItem() -> some View {
-        HStack(spacing: 0) {
-            
         }
     }
 }
