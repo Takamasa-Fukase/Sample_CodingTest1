@@ -7,43 +7,6 @@
 
 import SwiftUI
 
-final class GramToKcalConverter {
-    private static let kcalPer1GramOfProtein: Int = 4       // たんぱく質 1(g) = 4(kcal)
-    private static let kcalPer1GramOfFat: Int = 9           // 脂質　　　 1(g) = 9(kcal)
-    private static let kcalPer1GramOfCarbohydrate: Int = 4  // 炭水化物　 1(g) = 4(kcal)
-    
-    static func getProteinKcal(from grams: Double) -> Int {
-        return convertToRoundedInt(doubleKcal: grams * Double(kcalPer1GramOfProtein))
-    }
-    
-    static func getFatKcal(from grams: Double) -> Int {
-        return convertToRoundedInt(doubleKcal: grams * Double(kcalPer1GramOfFat))
-    }
-    
-    static func getCarbohydrateKcal(from grams: Double) -> Int {
-        return convertToRoundedInt(doubleKcal: grams * Double(kcalPer1GramOfCarbohydrate))
-    }
-        
-    private static func convertToRoundedInt(doubleKcal: Double) -> Int {
-        return Int(round(doubleKcal))
-    }
-}
-
-struct Ingredient {
-    let name: String
-    let proteinGrams: Double
-    let fatGrams: Double
-    let carbohydrateGrams: Double
-    
-    // 食材の各PFCのグラム値からカロリーの合計値を計算して返却する
-    func getTotalKcal() -> Int {
-        let proteinKcal = GramToKcalConverter.getProteinKcal(from: proteinGrams)
-        let fatKcal = GramToKcalConverter.getFatKcal(from: fatGrams)
-        let carbohydrateKcal = GramToKcalConverter.getCarbohydrateKcal(from: carbohydrateGrams)
-        return proteinKcal + fatKcal + carbohydrateKcal
-    }
-}
-
 struct ContentView: View {
     let selectedIngredients: [Ingredient] = [
         .init(
