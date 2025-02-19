@@ -25,19 +25,19 @@ final class GramToKcalConverter {
     }
     
     private static func convert(from grams: Double, with kcalPer1Gram: Int) -> Int {
-        return (grams.intakeGramsDouble * Double(kcalPer1Gram)).roundedInt
+        return (grams.roundedGramsDouble * Double(kcalPer1Gram)).roundedKcalInt
     }
 }
 
-extension Double {
+fileprivate extension Double {
     // ● 摂取量(g) : 小数第一位 (小数第二位を四捨五入)
-    var intakeGramsDouble: Double {
+    var roundedGramsDouble: Double {
         print("intakeGramsDouble 元の値: \(self), 変換後: \((self * 10).rounded())")
         return (self * 10).rounded()
     }
     
     // ● カロリー(kcal) : 整数 (小数第一位を四捨五入)
-    var roundedInt: Int {
+    var roundedKcalInt: Int {
         print("roundedInt 元の値: \(self), 変換後: \(Int(self.rounded()))")
         return Int(self.rounded())
     }
