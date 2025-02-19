@@ -60,7 +60,7 @@ struct NaturalLanguageMealRecordCreationView: View {
                 .padding(.all, 16)
                 
                 Button {
-                    
+                    viewModel.createButtonTapped()
                 } label: {
                     Color.askenOrange
                         .frame(width: 200, height: 68)

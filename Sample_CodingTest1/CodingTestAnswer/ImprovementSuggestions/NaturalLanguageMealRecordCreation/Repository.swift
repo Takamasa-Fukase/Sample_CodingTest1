@@ -21,7 +21,7 @@ final class Repository {
             messages: [
                 .user(.init(content: .string(queryText)))
             ],
-            model: .gpt3_5Turbo
+            model: .gpt4_o
         )
         let result = try await openAIAPIClient.chats(query: query)
         let resultMessageText = result.choices.first?.message.content?.string ?? ""
