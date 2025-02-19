@@ -11,11 +11,63 @@ struct TotalKcalSimulationView: View {
     @State var viewModel = TotalKcalSimulationViewModel()
     
     var body: some View {
-        VStack {
-            Text("合計：\(viewModel.totalKcal)kcal")
+        NavigationStack {
+            VStack(spacing: 0) {
+                HStack(alignment: .bottom, spacing: 0) {
+                    Image("mikusan_kochira_pause")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 120)
+                    
+                    Spacer()
+                        .frame(width: 16)
+                    
+                    ZStack {
+                        Color.white
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding(.bottom, 12)
+                        
+                        Text("食材を選択してくださいね♪")
+                            .font(.system(size: 18, weight: .regular))
+                            .padding(.all, 8)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 180)
+                .padding(EdgeInsets(top: 12, leading: 32, bottom: 0, trailing: 32))
+                .background(Color.askenBackgroundLightGray)
+                
+                Text("合計：\(viewModel.totalKcal)kcal")
+                    .font(.system(size: 32, weight: .bold))
+                    .padding(.all, 20)
+                
+                // 食材のチェックリスト
+                ForEach(viewModel.checkListItems) { item in
+                    CheckListItemView(item: item)
+                }
+                
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.white)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("合計カロリー計算")
+                        .foregroundColor(.white)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Color.askenGreen, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .onAppear {
+                viewModel.onViewAppear()
+            }
         }
-        .onAppear {
-            viewModel.onViewAppear()
+    }
+    
+    func checkListItem() -> some View {
+        HStack(spacing: 0) {
+            
         }
     }
 }

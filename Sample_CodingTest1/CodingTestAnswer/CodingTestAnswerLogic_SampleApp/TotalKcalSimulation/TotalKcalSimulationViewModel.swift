@@ -10,19 +10,20 @@ import Observation
 
 @Observable
 final class TotalKcalSimulationViewModel {
-    private(set) var selectedIngredients: [FixedGramIngredient] = []
+    private(set) var checkListItems: [CheckListItem] = []
     private(set) var totalKcal: Int = 0
     
     func onViewAppear() {
-        // TODO: 後で、選択されたやつを配列に追加・削除する感じにしたい。今は直で入れる
-        selectedIngredients = FixedGramIngredientsDataSource.fixedGramIngredients
+        checkListItems = FixedGramIngredientsDataSource.fixedGramIngredients.map({ ingredient in
+            return CheckListItem(ingredient: ingredient, isChecked: false)
+        })
         
         calculateTotalKcalAndUpdate()
     }
     
     private func calculateTotalKcalAndUpdate() {
-        totalKcal = selectedIngredients.reduce(into: 0) { _totalKcal, ingredient in
-            _totalKcal += ingredient.getTotalKcal()
-        }
+//        totalKcal = selectedIngredients.reduce(into: 0) { _totalKcal, ingredient in
+//            _totalKcal += ingredient.getTotalKcal()
+//        }
     }
 }

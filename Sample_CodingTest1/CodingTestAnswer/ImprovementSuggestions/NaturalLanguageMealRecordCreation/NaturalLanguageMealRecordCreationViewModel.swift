@@ -11,6 +11,7 @@ import Observation
 @Observable
 final class NaturalLanguageMealRecordCreationViewModel {
     private(set) var resultMessageText: String = ""
+    var inputText: String = ""
     
     private let repository: Repository
     
@@ -18,10 +19,10 @@ final class NaturalLanguageMealRecordCreationViewModel {
         self.repository = repository
     }
     
-    func onViewAppear() {
+    func calculateButtonTapped() {
         Task {
             do {
-                let resultMessageText = try await repository.sendChat(queryText: "こんにちは。私はジョニー佐々木です")
+                let resultMessageText = try await repository.sendChat(queryText: inputText)
                 print("vm result: \(resultMessageText)")
                 self.resultMessageText = resultMessageText
                 
