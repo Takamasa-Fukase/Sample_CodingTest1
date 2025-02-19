@@ -45,7 +45,7 @@ struct Ingredient {
 }
 
 struct ContentView: View {
-    let ingredients: [Ingredient] = [
+    let selectedIngredients: [Ingredient] = [
         .init(
             name: "白米100g",
             proteinGrams: 2.5,
@@ -83,11 +83,12 @@ struct ContentView: View {
      問題３について
      可能な限りテスト観点についてコメントに記載してください。
      */
+
     func calculate() {
-        let riceKcal = getTotalKcal(from: ingredients[0])
-        let nattoKcal = getTotalKcal(from: ingredients[1])
-        let nattoAndRiceKcal = riceKcal + nattoKcal
-        print("riceKcal: \(riceKcal), nattoKcal: \(nattoKcal), nattoAndRiceKcal: \(nattoAndRiceKcal)")
+        let selectedIngredientsTotalKcal = selectedIngredients.reduce(into: 0) { totalKcal, ingredient in
+            totalKcal += ingredient.getTotalKcal()
+        }
+        print("selectedIngredientsTotalKcal: \(selectedIngredientsTotalKcal)")
     }
 }
 
