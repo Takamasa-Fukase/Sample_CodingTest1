@@ -19,6 +19,7 @@ final class NaturalLanguageMealRecordCreationViewModel {
     var inputText: String = ""
     var consumedIngredientListItems: [ConsumedIngredientListItem] = []
     private(set) var totalKcal: Int = 0
+    private(set) var isCreating = false
     
     private let repository: Repository
     
@@ -28,6 +29,9 @@ final class NaturalLanguageMealRecordCreationViewModel {
     
     func createButtonTapped() {
         Task {
+            // ローディング表示を開始
+            isCreating = true
+            
             do {
                 let queryText = """
 
@@ -63,7 +67,7 @@ final class NaturalLanguageMealRecordCreationViewModel {
 『\(inputText)』
 
 """
-                
+                // OpenAI APIのChatCompletionAPIを叩く
                 let resultMessageText = try await repository.sendChat(queryText: queryText)
                 print("resultMessageText: \(resultMessageText)")
                 
@@ -100,6 +104,9 @@ final class NaturalLanguageMealRecordCreationViewModel {
             } catch {
                 print("repository.sendChat error: \(error)")
             }
+            
+            // ローディング表示を終了
+            isCreating = false
         }
     }
 }

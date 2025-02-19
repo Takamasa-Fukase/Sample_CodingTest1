@@ -38,38 +38,64 @@ struct NaturalLanguageMealRecordCreationView: View {
                 .padding(EdgeInsets(top: 12, leading: 32, bottom: 0, trailing: 32))
                 .background(Color.askenBackgroundLightGray)
                 
-                ZStack(alignment: .topLeading) {
-                    // テキストエディター
-                    TextEditor(text: $viewModel.inputText)
-                        .frame(height: 160)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.gray, lineWidth: 1.0)
-                        )
-                        .cornerRadius(10)
+                // アイテムが空の場合は入力フォームとボタンを表示
+                if viewModel.consumedIngredientListItems.isEmpty {
+                    ZStack(alignment: .topLeading) {
+                        // テキストエディター
+                        TextEditor(text: $viewModel.inputText)
+                            .frame(height: 160)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.gray, lineWidth: 1.0)
+                            )
+                            .cornerRadius(10)
+                        
+                        // プレースホルダー
+                        if viewModel.inputText.isEmpty {
+                            Text("（例）キムチ納豆ご飯を、小さめのお茶碗で食べた。あとはメカブを１パック。\n\n（例）スライストマト、バジル、モッツァレラチーズにオリーブをかけたサラダをラーメンどんぶりいっぱいに盛って食べた。")
+                                .font(.system(size: 14, weight: .light))
+                                .foregroundColor(.gray)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 16)
+                        }
+                    }
+                    .padding(.all, 16)
                     
-                    // プレースホルダー
-                    if viewModel.inputText.isEmpty {
-                        Text("（例）キムチ納豆ご飯を、小さめのお茶碗で食べた。あとはメカブを１パック。\n\n（例）スライストマト、バジル、モッツァレラチーズにオリーブをかけたサラダをラーメンどんぶりいっぱいに盛って食べた。")
-                            .font(.system(size: 14, weight: .light))
-                            .foregroundColor(.gray)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 16)
+                    Button {
+                        viewModel.createButtonTapped()
+                    } label: {
+                        Color.askenOrange
+                            .frame(width: 200, height: 68)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay {
+                                // ローディング表示
+                                if viewModel.isCreating {
+                                    // インジケーター
+                                    ProgressView()
+                                        .progressViewStyle(.circular)
+                                        .tint(Color.white)
+                                        .scaleEffect(1.8)
+                                    
+                                } else {
+                                    Text("食材データを生成")
+                                        .font(.system(size: 20, weight: .bold))
+                                        .foregroundColor(.white)
+                                }
+                            }
                     }
                 }
-                .padding(.all, 16)
-                
-                Button {
-                    viewModel.createButtonTapped()
-                } label: {
-                    Color.askenOrange
-                        .frame(width: 200, height: 68)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .overlay {
-                            Text("食材データを生成")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(.white)
+                // アイテムが空じゃない場合は合計カロリーと食べた食材のリストを表示
+                else {
+                    Text("合計：\(viewModel.totalKcal)kcal")
+                        .font(.system(size: 32, weight: .bold))
+                        .padding(.all, 20)
+                    
+                    // 食べた食材のリスト
+                    ScrollView(.vertical) {
+                        ForEach(viewModel.consumedIngredientListItems) { item in
+                            ConsumedIngredientListItemView(item: item)
                         }
+                    }
                 }
                 
                 Spacer()

@@ -13,19 +13,17 @@ struct CheckListItemView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Toggle(isOn: $item.isChecked) {
+            Toggle(isOn: $item.isChecked) {
 //                    Text(item.ingredient.name)
-                }
-                .toggleStyle(
-                    CheckboxToggleStyle(
-                        item: $item,
-                        toggleValueChanged: {
-                            toggleValueChanged()
-                        }
-                    )
-                )
             }
+            .toggleStyle(
+                CheckboxToggleStyle(
+                    item: $item,
+                    toggleValueChanged: {
+                        toggleValueChanged()
+                    }
+                )
+            )
             
             Spacer()
                 .frame(height: 8)
