@@ -8,20 +8,8 @@
 import SwiftUI
 
 struct TotalKcalSimulationView: View {
-    let selectedIngredients: [FixedGramIngredient] = [
-        .init(
-            name: "白米100g",
-            proteinGrams: 2.5,
-            fatGrams: 0.3,
-            carbohydrateGrams: 37.1
-        ),
-        .init(
-            name: "納豆100g",
-            proteinGrams: 16.5,
-            fatGrams: 10.0,
-            carbohydrateGrams: 12.1
-        ),
-    ]
+//    let selectedIngredients: [FixedGramIngredient] = []
+    let selectedIngredients = FixedGramIngredientsDataSource.fixedGramIngredients
     
     var body: some View {
         VStack {
