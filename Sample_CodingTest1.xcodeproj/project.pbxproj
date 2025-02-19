@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BCF5BDD62D6624D90070F166 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = BCF5BDD52D6624D90070F166 /* OpenAI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BCF5BD802D64A4F70070F166 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCF5BDD62D6624D90070F166 /* OpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = Sample_CodingTest1;
 			packageProductDependencies = (
+				BCF5BDD52D6624D90070F166 /* OpenAI */,
 			);
 			productName = Sample_CodingTest1;
 			productReference = BCF5BD6F2D64A4F40070F166 /* Sample_CodingTest1.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = BCF5BD662D64A4F40070F166;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BCF5BDD42D6624D90070F166 /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BCF5BD702D64A4F40070F166 /* Products */;
 			projectDirPath = "";
@@ -558,6 +567,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BCF5BDD42D6624D90070F166 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.3.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BCF5BDD52D6624D90070F166 /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCF5BDD42D6624D90070F166 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BCF5BD672D64A4F40070F166 /* Project object */;
 }
