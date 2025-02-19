@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// 「白米100g」みたいに予め分量も決まっている現行のasken仕様の食材を表す構造体
+///  ※コーディングテスト課題の要件（仕様）に合わせて作成した
 struct FixedGramIngredient {
     let name: String
     let proteinGrams: Double
