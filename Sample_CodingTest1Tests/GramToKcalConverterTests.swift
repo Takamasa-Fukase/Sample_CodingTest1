@@ -83,7 +83,46 @@ final class GramToKcalConverterTests: XCTestCase {
     }
     
     func test_結果として返却されるkcal（Int型）の値が計算の過程で少数第一位の四捨五入になっていることを確認() {
+        // MARK: Protein
+        // 下半分側（例：0.0~0.4 => 0）の範囲での切り捨てが行われていることを確認する
+        let proteinGramsOf結果のkcalが切り捨てになる値: Double = 0.3
+        let proteinKcalOfRoundedDown: Int = GramToKcalConverter.getProteinKcal(for: proteinGramsOf結果のkcalが切り捨てになる値)
+        // 0.3 x 4 = 1.2 なので切り捨てになって、結果が1になることを確認する
+        XCTAssertEqual(proteinKcalOfRoundedDown, 1)
         
+        // 上半分側（例：0.5~1.0 => 1）の範囲での繰り上げが行われていることを確認する
+        let proteinGramsOf結果のkcalが繰り上げになる値: Double = 0.4
+        let proteinKcalOfRoundedUp: Int = GramToKcalConverter.getProteinKcal(for: proteinGramsOf結果のkcalが繰り上げになる値)
+        // 0.4 x 4 = 1.6 なので繰り上げになって、結果が2になることを確認する
+        XCTAssertEqual(proteinKcalOfRoundedUp, 2)
+        
+        
+        // MARK: Fat
+        // 下半分側（例：0.0~0.4 => 0）の範囲での切り捨てが行われていることを確認する
+        let fatGramsOf結果のkcalが切り捨てになる値: Double = 0.6
+        let fatKcalOfRoundedDown: Int = GramToKcalConverter.getFatKcal(for: fatGramsOf結果のkcalが切り捨てになる値)
+        // 0.6 x 9 = 5.4 なので切り捨てになって、結果が5になることを確認する
+        XCTAssertEqual(fatKcalOfRoundedDown, 5)
+        
+        // 上半分側（例：0.5~1.0 => 1）の範囲での繰り上げが行われていることを確認する
+        let fatGramsOf結果のkcalが繰り上げになる値: Double = 0.5
+        let fatKcalOfRoundedUp: Int = GramToKcalConverter.getFatKcal(for: fatGramsOf結果のkcalが繰り上げになる値)
+        // 0.5 x 9 = 4.5 なので繰り上げになって、結果が5になることを確認する
+        XCTAssertEqual(fatKcalOfRoundedUp, 5)
+        
+        
+        // MARK: Carbohydrate
+        // 下半分側（例：0.0~0.4 => 0）の範囲での切り捨てが行われていることを確認する
+        let carbohydrateGramsOf結果のkcalが切り捨てになる値: Double = 0.3
+        let carbohydrateKcalOfRoundedDown: Int = GramToKcalConverter.getCarbohydrateKcal(for: carbohydrateGramsOf結果のkcalが切り捨てになる値)
+        // 0.3 x 4 = 1.2 なので切り捨てになって、結果が1になることを確認する
+        XCTAssertEqual(carbohydrateKcalOfRoundedDown, 1)
+        
+        // 上半分側（例：0.5~1.0 => 1）の範囲での繰り上げが行われていることを確認する
+        let carbohydrateGramsOf結果のkcalが繰り上げになる値: Double = 0.4
+        let carbohydrateKcalOfRoundedUp: Int = GramToKcalConverter.getCarbohydrateKcal(for: carbohydrateGramsOf結果のkcalが繰り上げになる値)
+        // 0.4 x 4 = 1.6 なので繰り上げになって、結果が2になることを確認する
+        XCTAssertEqual(carbohydrateKcalOfRoundedUp, 2)
     }
     
     func test_各PFCごとのgramToKcal変換の基準となる値に対して期待する計算結果になっていることを確認() {
