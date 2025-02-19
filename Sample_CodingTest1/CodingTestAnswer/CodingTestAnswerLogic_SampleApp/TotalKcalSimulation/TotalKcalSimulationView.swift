@@ -30,8 +30,8 @@ struct TotalKcalSimulationView: View {
                             .padding(.bottom, 12)
                         
                         Text("食材を選択してくださいね♪")
-                            .font(.system(size: 18, weight: .regular))
-                            .padding(.all, 8)
+                            .font(.system(size: 16, weight: .regular))
+                            .padding(.all, 12)
                     }
                 }
                 .frame(maxWidth: .infinity)

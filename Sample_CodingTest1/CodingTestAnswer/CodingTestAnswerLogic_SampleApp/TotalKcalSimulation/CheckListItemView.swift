@@ -48,7 +48,7 @@ struct CheckboxToggleStyle: ToggleStyle {
     let toggleValueChanged: () -> Void
     
     func makeBody(configuration: Configuration) -> some View {
-        Button{
+        Button {
             configuration.isOn.toggle()
             toggleValueChanged()
         } label: {

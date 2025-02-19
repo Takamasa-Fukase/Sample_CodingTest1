@@ -13,16 +13,32 @@ struct NaturalLanguageMealRecordCreationView: View {
     var body: some View {
         @Bindable var viewModel = viewModel
         NavigationStack {
-            VStack(spacing: 0) {
-                // TODO: 未来さん画像
-                Text("どんなものを、どのくらいの大きさの器で食べたかを教えてください♪")
-                    .font(.system(size: 16, weight: .regular))
-                
-                Text(viewModel.resultMessageText)
-                    .font(.system(size: 18, weight: .regular))
+            VStack(alignment: .center, spacing: 0) {
+                HStack(alignment: .bottom, spacing: 0) {
+                    Image("mikusan_yubisashi")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 120)
+                    
+                    Spacer()
+                        .frame(width: 16)
+                    
+                    ZStack {
+                        Color.white
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding(.bottom, 12)
+                        
+                        Text("どんなものを、どのくらいの大きさの器で食べたかを教えてください♪")
+                            .font(.system(size: 16, weight: .regular))
+                            .padding(.all, 12)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 180)
+                .padding(EdgeInsets(top: 12, leading: 32, bottom: 0, trailing: 32))
+                .background(Color.askenBackgroundLightGray)
                 
                 ZStack(alignment: .topLeading) {
-                    
                     // テキストエディター
                     TextEditor(text: $viewModel.inputText)
                         .frame(height: 160)
@@ -37,10 +53,26 @@ struct NaturalLanguageMealRecordCreationView: View {
                         Text("（例）キムチ納豆ご飯を、小さめのお茶碗で食べた。あとはメカブを１パック。\n\n（例）スライストマト、バジル、モッツァレラチーズにオリーブをかけたサラダをラーメンどんぶりいっぱいに盛って食べた。")
                             .font(.system(size: 14, weight: .light))
                             .foregroundColor(.gray)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 16)
                     }
                 }
+                .padding(.all, 16)
+                
+                Button {
+                    
+                } label: {
+                    Color.askenOrange
+                        .frame(width: 200, height: 68)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay {
+                            Text("食材データを生成")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                }
+                
+                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.white)
@@ -60,6 +92,3 @@ struct NaturalLanguageMealRecordCreationView: View {
 #Preview {
     NaturalLanguageMealRecordCreationView()
 }
-// 146 181 81
-// 244 186 75
-// 238 237 229
