@@ -17,9 +17,9 @@ struct FixedGramIngredient {
     
     // 食材の各PFCのグラム値からカロリーの合計値を計算して返却する
     func getTotalKcal() -> Int {
-        let proteinKcal = GramToKcalConverter.getProteinKcal(from: proteinGrams)
-        let fatKcal = GramToKcalConverter.getFatKcal(from: fatGrams)
-        let carbohydrateKcal = GramToKcalConverter.getCarbohydrateKcal(from: carbohydrateGrams)
+        let proteinKcal = GramToKcalConverter.getProteinKcal(for: proteinGrams)
+        let fatKcal = GramToKcalConverter.getFatKcal(for: fatGrams)
+        let carbohydrateKcal = GramToKcalConverter.getCarbohydrateKcal(for: carbohydrateGrams)
         return proteinKcal + fatKcal + carbohydrateKcal
     }
 }

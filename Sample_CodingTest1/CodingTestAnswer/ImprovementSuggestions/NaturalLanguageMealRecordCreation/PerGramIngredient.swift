@@ -16,9 +16,9 @@ struct PerGramIngredient {
     let carbohydratePer1Gram: Double
     
     func getTotalKcal(for grams: Double) -> Int {
-        let proteinKcal = GramToKcalConverter.getProteinKcal(from: proteinPer1Gram * grams)
-        let fatKcal = GramToKcalConverter.getFatKcal(from: fatPer1Gram * grams)
-        let carbohydrateKcal = GramToKcalConverter.getCarbohydrateKcal(from: carbohydratePer1Gram * grams)
+        let proteinKcal = GramToKcalConverter.getProteinKcal(for: proteinPer1Gram * grams)
+        let fatKcal = GramToKcalConverter.getFatKcal(for: fatPer1Gram * grams)
+        let carbohydrateKcal = GramToKcalConverter.getCarbohydrateKcal(for: carbohydratePer1Gram * grams)
         return proteinKcal + fatKcal + carbohydrateKcal
     }
 }

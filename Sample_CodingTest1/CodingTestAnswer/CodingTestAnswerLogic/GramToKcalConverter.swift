@@ -12,15 +12,15 @@ final class GramToKcalConverter {
     private static let kcalPer1GramOfFat: Int = 9           // 脂質　　　 1(g) = 9(kcal)
     private static let kcalPer1GramOfCarbohydrate: Int = 4  // 炭水化物　 1(g) = 4(kcal)
     
-    static func getProteinKcal(from grams: Double) -> Int {
+    static func getProteinKcal(for grams: Double) -> Int {
         return convert(from: grams, with: kcalPer1GramOfProtein)
     }
     
-    static func getFatKcal(from grams: Double) -> Int {
+    static func getFatKcal(for grams: Double) -> Int {
         return convert(from: grams, with: kcalPer1GramOfFat)
     }
     
-    static func getCarbohydrateKcal(from grams: Double) -> Int {
+    static func getCarbohydrateKcal(for grams: Double) -> Int {
         return convert(from: grams, with: kcalPer1GramOfCarbohydrate)
     }
     
