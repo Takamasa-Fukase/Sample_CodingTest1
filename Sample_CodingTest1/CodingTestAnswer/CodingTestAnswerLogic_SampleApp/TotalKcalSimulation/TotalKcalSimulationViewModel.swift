@@ -16,7 +16,24 @@ struct CheckListItem: Identifiable {
 
 @Observable
 final class TotalKcalSimulationViewModel {
-    var checkListItems: [CheckListItem] = []
+    var checkListItems: [CheckListItem] = [] {
+        didSet {
+            // 選択中のアイテム数に応じて未来さんの画像とセリフを切り替える
+            switch checkListItems.filter({ $0.isChecked }).count {
+            case 1:
+                mikusanImageName = "mikusan_kochira_pause"
+                mikusanMessageText = "いい感じ♪"
+            case 2:
+                mikusanImageName = "mikusan_guts_pause"
+                mikusanMessageText = "栄養バッチリです！"
+            default:
+                mikusanImageName = "mikusan_kochira_pause"
+                mikusanMessageText = "食材を選択してくださいね♪"
+            }
+        }
+    }
+    private(set) var mikusanImageName = "mikusan_kochira_pause"
+    private(set) var mikusanMessageText = "食材を選択してくださいね♪"
     private(set) var totalKcal: Int = 0
     
     func onViewAppear() {

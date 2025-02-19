@@ -16,7 +16,7 @@ struct TotalKcalSimulationView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 HStack(alignment: .bottom, spacing: 0) {
-                    Image("mikusan_kochira_pause")
+                    Image(viewModel.mikusanImageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 120)
@@ -29,7 +29,7 @@ struct TotalKcalSimulationView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(.bottom, 12)
                         
-                        Text("食材を選択してくださいね♪")
+                        Text(viewModel.mikusanMessageText)
                             .font(.system(size: 16, weight: .regular))
                             .padding(.all, 12)
                     }

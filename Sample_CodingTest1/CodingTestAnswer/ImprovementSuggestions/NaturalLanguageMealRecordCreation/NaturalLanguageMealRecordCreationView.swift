@@ -15,7 +15,7 @@ struct NaturalLanguageMealRecordCreationView: View {
         NavigationStack {
             VStack(alignment: .center, spacing: 0) {
                 HStack(alignment: .bottom, spacing: 0) {
-                    Image("mikusan_yubisashi")
+                    Image(viewModel.mikusanImageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 120)
@@ -28,7 +28,7 @@ struct NaturalLanguageMealRecordCreationView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(.bottom, 12)
                         
-                        Text("どんなものを、どのくらいの大きさの器で食べたかを教えてください♪")
+                        Text(viewModel.mikusanMessageText)
                             .font(.system(size: 16, weight: .regular))
                             .padding(.all, 12)
                     }

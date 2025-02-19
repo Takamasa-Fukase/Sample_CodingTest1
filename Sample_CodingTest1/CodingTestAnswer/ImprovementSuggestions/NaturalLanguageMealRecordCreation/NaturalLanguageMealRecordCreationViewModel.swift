@@ -16,10 +16,22 @@ struct ConsumedIngredientListItem: Identifiable {
 
 @Observable
 final class NaturalLanguageMealRecordCreationViewModel {
-    var inputText: String = ""
-    var consumedIngredientListItems: [ConsumedIngredientListItem] = []
-    private(set) var totalKcal: Int = 0
+    var inputText = ""
+    var consumedIngredientListItems: [ConsumedIngredientListItem] = [] {
+        didSet {
+            if consumedIngredientListItems.isEmpty {
+                mikusanImageName = "mikusan_yubisashi"
+                mikusanMessageText = "どんなものを、どのくらいの大きさの器で食べたかを教えてください♪"
+            } else {
+                mikusanImageName = "mikusan_ganbaruzoi"
+                mikusanMessageText = "バランスが取れた食事ですね！これからも一緒に記録作成を通して明日を健康にしていきましょう♪"
+            }
+        }
+    }
+    private(set) var mikusanImageName = "mikusan_yubisashi"
+    private(set) var mikusanMessageText = "どんなものを、どのくらいの大きさの器で食べたかを教えてください♪"
     private(set) var isCreating = false
+    private(set) var totalKcal: Int = 0
     
     private let repository: Repository
     
