@@ -107,6 +107,15 @@ struct NaturalLanguageMealRecordCreationView: View {
                     Text("自然言語お手軽食事記録作成")
                         .foregroundColor(.white)
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        viewModel.resetButtonTapped()
+                    } label: {
+                        Text("リセット")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundColor(.white)
+                    }
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.askenGreen, for: .navigationBar)

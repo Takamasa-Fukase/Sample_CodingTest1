@@ -121,4 +121,11 @@ final class NaturalLanguageMealRecordCreationViewModel {
             isCreating = false
         }
     }
+    
+    func resetButtonTapped() {
+        inputText = ""
+        consumedIngredientListItems.removeAll()
+        isCreating = false
+        totalKcal = 0
+    }
 }
